@@ -2,16 +2,18 @@
 # Install and Run Couchbase Server
 # ===
 
-$stem = "couchbase-server-enterprise_${version}_x86_64"
 $suffix = $operatingsystem ? {
     Ubuntu => ".deb",
     CentOS => ".rpm",
 }
-$filename = "$stem$suffix"
+
+$fullUrl = "$url$suffix"
+$splitter = split($fullUrl, '/')
+$filename = $splitter[-1]
 
 # Download the Sources
 exec { "couchbase-server-source":
-    command => "/usr/bin/wget http://packages.couchbase.com/releases/$version/$filename",
+    command => "/usr/bin/wget $fullUrl",
     cwd => "/vagrant/",
     creates => "/vagrant/$filename",
     before => Package['couchbase-server']

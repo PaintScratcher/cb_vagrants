@@ -6,12 +6,17 @@
     v.customize ["modifyvm", :id, "--memory", 1024]
   end
 
+  if (defined?(Url)).nil?
+    Url= "http://packages.couchbase.com/releases/#{Version}/couchbase-server-enterprise_#{Version}_x86_64"
+  end
+
   # Provision the server itself with puppet
   config.vm.provision "puppet" do |puppet|
     puppet.manifests_path = "../../"
     puppet.manifest_file = "puppet.pp"
     puppet.facter = {
-      "version" => Version
+      "version" => Version,
+      "url" => Url,
     }
   end
 
