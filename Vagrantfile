@@ -1,10 +1,16 @@
 # Number of nodes to provision
-num_nodes = 1
+unless ENV['n'].nil? || ENV['n'] == 0
+  num_nodes = ENV['n'].to_i
+else
+  num_nodes = 1
+end
 
 # Check to see if a custom download location has been given, if not use a default value (2.5.0 style)
 if (defined?(Url)).nil?
   Url= "http://packages.couchbase.com/releases/#{Version}/couchbase-server-enterprise_#{Version}_x86_64"
 end
+
+ARGV.delete_at(1)
 
 # Start the vagrant configuration
 Vagrant.configure("2") do |config|
