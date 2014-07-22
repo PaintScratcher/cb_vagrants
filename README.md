@@ -7,8 +7,10 @@ If vagrant and VirtualBox are installed, it is very easy to get started with a 4
 
 See this blog post for more info: http://nitschinger.at/A-Couchbase-Cluster-in-Minutes-with-Vagrant-and-Puppet
 
-Just change into the appropriate directory and call "vagrant up". Everything else will be done for you, but you need
+Just change into the appropriate directory and call `vagrant up`. Everything else will be done for you, but you need
 internet access.
+
+Additionally, you can specify the number of nodes to provision from the command line by using the environment variable n. For example: `n=3 vagrant up` will provision a 3 node cluster. If you do not specify a number a 4 node cluster will be created by default.
 
 ## Repo Maintenance
 To reduce code duplication and ease maintenance faffery this repo makes heavy use of vagrants ability to join multiple vagrant files together. As such the Vagrantfile located in the bottom directories will draw from both the version file and the top level Vagrantfile. The puppet manifest is taken from the top level puppet.pp.
