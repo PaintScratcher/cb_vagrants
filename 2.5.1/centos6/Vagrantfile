@@ -1,16 +1,15 @@
-Vagrant.configure("2") do |config|
-  # IP Address Base for private network
-  ip_addr_base = "192.168.67.10%d"
+# IP Address Base for private network
+ip_addr_base = "192.168.67.10%d"
 
-  # Download the initial box from this url
-  config.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/centos-64-x64-vbox4210.box"
+# Download the initial box from this url
+box_url = "http://puppet-vagrant-boxes.puppetlabs.com/centos-64-x64-vbox4210.box"
 
-  box = "centos64_x64"
+# Name for the box
+box = "centos64_x64"
 
-  # Load the next level Vagrantfile (cb version)
-  load '../version'
+# Load the next level Vagrantfile (cb version)
+load '../version'
 
-  # Read and execute the top level Vagrantfile
-  external2 = File.read '../../Vagrantfile'
-  eval external2
-end
+# Read and execute the top level Vagrantfile
+external = File.read '../../Vagrantfile'
+eval external
