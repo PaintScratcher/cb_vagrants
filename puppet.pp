@@ -27,7 +27,8 @@ if $operatingsystem == 'Ubuntu'{
   # Install libssl dependency
   package { "libssl0.9.8":
      ensure => present,
-	   require => Exec["apt-get update"]
+	   require => Exec["apt-get update"],
+     before => Package["couchbase-server"]
   }
 }
 else{
@@ -40,7 +41,6 @@ else{
 
 # Install Couchbase Server
 package { "couchbase-server":
-    require => Package["libssl0.9.8"],
     provider => $operatingsystem ? {
         Ubuntu => dpkg,
         CentOS => rpm,
