@@ -39,7 +39,7 @@ Vagrant.configure("2") do |config|
       node.vm.box = box
       node.vm.network :private_network, :ip => ip_addr_base % num
       node.vm.provider "virtualbox" do |v|
-        v.name = "Couchbase Server #{Version} #{box} Node #{num}"
+        v.name = "Couchbase Server #{Version} #{box.gsub '/', '_'} Node #{num}"
       end
     end
   end
