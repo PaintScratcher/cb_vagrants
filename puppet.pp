@@ -19,19 +19,9 @@ exec { "couchbase-server-source":
     before => Package['couchbase-server']
 }
 
-# Install Couchbase Server
-package { "couchbase-server":
-    provider => $operatingsystem ? {
-        Ubuntu => dpkg,
-        CentOS => rpm,
-    },
-    ensure => installed,
-    source => "/vagrant/$filename",
-}
-
 if $operatingsystem == 'Ubuntu'{
   # Update the System
-    exec { "apt-get update":
+  exec { "apt-get update":
 	     path => "/usr/bin"
   }
   # Install libssl dependency
@@ -46,6 +36,17 @@ else{
       ensure => "stopped",
       enable => false
     }
+}
+
+# Install Couchbase Server
+package { "couchbase-server":
+    require => Package["libssl0.9.8"],
+    provider => $operatingsystem ? {
+        Ubuntu => dpkg,
+        CentOS => rpm,
+    },
+    ensure => installed,
+    source => "/vagrant/$filename",
 }
 
 # Ensure the service is running

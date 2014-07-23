@@ -18,8 +18,10 @@ Vagrant.configure("2") do |config|
     v.customize ["modifyvm", :id, "--memory", 1024]
   end
 
-  # Define the vagrant box download location from the link given in the bottom level vagrantfile
-  config.vm.box_url = box_url
+  if defined?(box_url)
+    # Define the vagrant box download location from the link given in the bottom level vagrantfile
+    config.vm.box_url = box_url
+  end
 
   # Provision the server itself with puppet
   config.vm.provision "puppet" do |puppet|
