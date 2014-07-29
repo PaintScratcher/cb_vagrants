@@ -1,6 +1,6 @@
 # Number of nodes to provision
-unless ENV['n'].nil? || ENV['n'] == 0
-  num_nodes = ENV['n'].to_i
+unless ENV['VAGRANT_NODES'].nil? || ENV['VAGRANT_NODES'] == 0
+  num_nodes = ENV['VAGRANT_NODES'].to_i
 else
   num_nodes = 4
 end
@@ -23,20 +23,26 @@ Vagrant.configure("2") do |config|
     config.vm.box_url = box_url
   end
 
-  # Provision the server itself with puppet
-  config.vm.provision "puppet" do |puppet|
-    puppet.manifests_path = "../../" # Define a custom location and name for the puppet file
-    puppet.manifest_file = "puppet.pp"
-    puppet.facter = { # Pass variables to puppet
-      "version" => Version, # Couchbase Server version
-      "url" => Url, # Couchbase download location
-    }
+  # Check to see if the VM is not running Windows and provision with puppet
+  if !(box.include?("win"))
+    # Provision the server itself with puppet
+    config.vm.provision "puppet" do |puppet|
+      puppet.manifests_path = "../../" # Define a custom location and name for the puppet file
+      puppet.manifest_file = "puppet.pp"
+      puppet.facter = { # Pass variables to puppet
+        "version" => Version, # Couchbase Server version
+        "url" => Url, # Couchbase download location
+      }
+    end
   end
 
   # Provision Config for each of the nodes
   1.upto(num_nodes) do |num|
     config.vm.define "node#{num}" do |node|
       node.vm.box = box
+      if(box.include?("win")) # If the VM is running Windows it will start with a GUI
+        v.gui = true
+      end
       node.vm.network :private_network, :ip => ip_addr_base % num
       node.vm.provider "virtualbox" do |v|
         v.name = "Couchbase Server #{Version} #{box.gsub '/', '_'} Node #{num}"
