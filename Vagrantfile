@@ -40,12 +40,12 @@ Vagrant.configure("2") do |config|
   1.upto(num_nodes) do |num|
     config.vm.define "node#{num}" do |node|
       node.vm.box = box
-      if(box.include?("win")) # If the VM is running Windows it will start with a GUI
-        v.gui = true
-      end
       node.vm.network :private_network, :ip => ip_addr_base % num
       node.vm.provider "virtualbox" do |v|
         v.name = "Couchbase Server #{Version} #{box.gsub '/', '_'} Node #{num}"
+        if(box.include?("win")) # If the VM is running Windows it will start with a GUI
+          v.gui = true
+        end
       end
     end
   end
