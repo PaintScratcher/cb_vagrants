@@ -1,15 +1,3 @@
-# IP Address Base for private network
-ip_addr_base = "192.168.69.10%d"
-
-# Download the initial box from this url
-box_url = "https://dl.dropbox.com/u/17738575/CentOS-5.8-x86_64.box"
-
-# Name for the box
-box = "centos5u8_x64"
-
-# Load the next level Vagrantfile (cb version)
-load '../version'
-
 # Read and execute the top level Vagrantfile
 external = File.read '../../Vagrantfile'
 eval external

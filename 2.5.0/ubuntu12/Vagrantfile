@@ -1,15 +1,3 @@
-# IP Address Base for private network
-ip_addr_base = "192.168.57.10%d"
-
-# Download the initial box from this url
-box_url = "http://files.vagrantup.com/precise64.box"
-
-# Name for the box
-box = "precise64"
-
-# Load the next level Vagrantfile (cb version)
-load '../version'
-
 # Read and execute the top level Vagrantfile
 external = File.read '../../Vagrantfile'
 eval external

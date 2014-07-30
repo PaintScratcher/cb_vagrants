@@ -1,11 +1,5 @@
-# IP Address Base for private network
-ip_addr_base = "192.168.40.10%d"
-
-# Name for the box
-box = "emyl/win2008r2"
-
-# Couchbase Server Version
-Version = "???"
+# Couchbase Server version
+version = "???"
 
 # Read and execute the top level Vagrantfile
 external = File.read '../Vagrantfile'

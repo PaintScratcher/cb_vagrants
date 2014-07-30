@@ -1,17 +1,5 @@
-# IP Address Base for private network
-ip_addr_base = "192.168.57.10%d"
-
-# Download the initial box from this url
-box_url = "http://puppet-vagrant-boxes.puppetlabs.com/ubuntu-server-10044-x64-vbox4210.box"
-
-# Name for the box
-box = "ubuntu-server-10044-x64-vbox4210"
-
-# Load the next level Vagrantfile (cb version)
-load '../version'
-
 # URL base for the Couchbase download URL
-Url="http://packages.couchbase.com.s3.amazonaws.com/releases/2.5.1/couchbase-server-enterprise_2.5.1_x86_64_openssl098"
+url="http://packages.couchbase.com.s3.amazonaws.com/releases/2.5.1/couchbase-server-enterprise_2.5.1_x86_64_openssl098"
 
 # Read and execute the top level Vagrantfile
 external = File.read '../../Vagrantfile'
