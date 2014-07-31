@@ -73,7 +73,7 @@ end
 # Check to see if a custom ip address has been given, if not generate one
 if (defined?(ip)).nil?
   base = "192.168."
-  ip_address = base + ip_addresses[operating_system] + ip_addresses[version] + ".10"
+  ip_address = base + ip_addresses[operating_system] + ip_addresses[version] + ".10%d"
 end
 
 # Check to see if the vagrant command given was 'up', if so print a handy dialogue
