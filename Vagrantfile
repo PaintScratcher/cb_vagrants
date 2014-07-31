@@ -2,18 +2,18 @@
 # See README.md for usage instructions
 
 ### Variable declarations - FEEL FREE TO EDIT THESE ###
+
 ip_addresses = { # Values for both OS's and Couchbase versions that are cat'd together to form a full ip address
-  "ubuntu12" => "12",
-  "ubuntu14" => "14",
+  "ubuntu12" => "2",
+  "ubuntu14" => "4",
   "centos5"  => "5",
   "centos6"  => "6",
-  "centos6"  => "7",
-  "win"      => "4",
+  "win"      => "7",
   "1.8.1"    => "1",
-  "2.0.1"    => "1",
-  "2.5.0"    => "0",
-  "2.5.1"    => "1",
-  "3.0.0"    => "0",
+  "2.0.1"    => "2",
+  "2.5.0"    => "5",
+  "2.5.1"    => "6",
+  "3.0.0"    => "3",
 }
 vagrant_boxes = { # Vagrant Cloud base boxes for each operating system
   "ubuntu10" => {"box_name" => "ubuntu-server-10044-x64-vbox4210",
@@ -71,8 +71,7 @@ end
 # Check to see if a custom ip address has been given, if not generate one
 if (defined?(ip)).nil?
   base = "192.168."
-#  ip_address = base + ip_addresses[operating_system] + ip_addresses[version]
-  ip_address = "192.168.10.10"
+  ip_address = base + ip_addresses[operating_system] + ip_addresses[version] + ".10"
 end
 
 # Check to see if the vagrant command given was 'up', if so print a handy dialogue
