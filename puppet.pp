@@ -24,12 +24,6 @@ if $operatingsystem == 'Ubuntu'{
   exec { "apt-get update":
 	     path => "/usr/bin"
   }
-  # Install libssl dependency
-  package { "libssl0.9.8":
-     ensure => present,
-	   require => Exec["apt-get update"],
-     before => Package["couchbase-server"]
-  }
 }
 else{
   # Ensure firewall is off (some CentOS images have firewall on by default).
@@ -37,6 +31,16 @@ else{
       ensure => "stopped",
       enable => false
     }
+}
+
+# Install libssl dependency
+package { "libssl0.9.8":
+    name => $operatingsystem ? {
+        Ubuntu => "libssl0.9.8",
+        CentOS => "openssl098e",
+    },
+    ensure => present,
+    before => Package["couchbase-server"]
 }
 
 # Install Couchbase Server

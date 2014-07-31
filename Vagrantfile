@@ -4,16 +4,18 @@
 ### Variable declarations - FEEL FREE TO EDIT THESE ###
 
 ip_addresses = { # Values for both OS's and Couchbase versions that are cat'd together to form a full ip address
+  "ubuntu10" => "1",
   "ubuntu12" => "2",
   "ubuntu14" => "4",
   "centos5"  => "5",
   "centos6"  => "6",
-  "win"      => "7",
-  "1.8.1"    => "1",
+  "windows"  => "7",
+  "1.8.1"    => "8",
   "2.0.1"    => "2",
   "2.5.0"    => "5",
-  "2.5.1"    => "6",
-  "3.0.0"    => "3",
+  "2.5.1"    => "1",
+  "3.0.0-973-rel" => "3",
+  "???"      => "9"
 }
 vagrant_boxes = { # Vagrant Cloud base boxes for each operating system
   "ubuntu10" => {"box_name" => "ubuntu-server-10044-x64-vbox4210",

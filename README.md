@@ -15,6 +15,7 @@ Additionally, you can specify the number of nodes to provision from the command 
 **IP Ranges:**
 
 Base range:192.168.xx.10x
+* ubuntu10 = 1x
 * Ubuntu12 = 2x
 * Ubuntu14 = 4x
 * Centos5  = 5x
