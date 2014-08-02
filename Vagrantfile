@@ -2,7 +2,7 @@
 # See README.md for usage instructions
 
 ### Variable declarations - FEEL FREE TO EDIT THESE ###
-
+begin
 ip_addresses = { # Values for both OS's and Couchbase versions that are cat'd together to form a full ip address
   "ubuntu10" => "1",
   "ubuntu12" => "2",
@@ -124,4 +124,6 @@ Vagrant.configure("2") do |config|
       end
     end
   end
+end
+rescue
 end
